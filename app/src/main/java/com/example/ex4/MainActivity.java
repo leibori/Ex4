@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         appCompatAutoCompleteTextView = (TextView) findViewById(R.id.portText);
         String port =  appCompatAutoCompleteTextView.getText().toString();
 
-        Intent intent = new Intent( this, Joystick.class);
+        Intent intent = new Intent( this, TCPclient.class);
 
         intent.putExtra("ip",ip);
         intent.putExtra("port",port);

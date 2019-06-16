@@ -17,5 +17,6 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-premmission android:name="android.premission.INTERNET" />
 
 </manifest>
