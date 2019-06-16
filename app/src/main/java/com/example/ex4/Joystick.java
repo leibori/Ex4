@@ -46,6 +46,18 @@ public class Joystick extends SurfaceView implements SurfaceHolder.Callback, Vie
         setOnTouchListener(this);
     }
 
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        setupDimestions();
+        drawJoystick(centerX, centerY);
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {}
+
     private void drawJoystick(float newX, float newY) {
         if (getHolder().getSurface().isValid()) {
             Canvas myCanvas = this.getHolder().lockCanvas();
@@ -59,20 +71,16 @@ public class Joystick extends SurfaceView implements SurfaceHolder.Callback, Vie
         }
     }
 
-    @Override
-    public void surfaceCreated(SurfaceHolder holder) {
-        setupDimestions();
-        drawJoystick(centerX, centerY);
-    }
-
     public boolean onTouch(View view, MotionEvent event) {
         if (view.equals(this)) {
             if (event.getAction() != event.ACTION_UP) {
                 float displacement = (float) Math.sqrt(Math.pow(event.getX() - centerX, 2) +
                         Math.pow(event.getY() - centerY, 2));
-                if (displacement <= baseRadius)
+                if (displacement <= baseRadius) {
                     drawJoystick(event.getX(), event.getY());
-                else {
+                    joystickCallback.OnJoystickMoved((event.getX() - centerX) / baseRadius,
+                            (event.getY() - centerY) / baseRadius, getId());
+                } else {
                     float ratio = baseRadius / displacement;
                     float constrainedX = centerX + (event.getX() - centerX) * ratio;
                     float constrainedY = centerY + (event.getY() - centerY) * ratio;
