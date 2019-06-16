@@ -97,4 +97,11 @@ public class TCPclient extends AppCompatActivity implements Joystick.JoystickLis
     @Override
     public void OnJoystickMoved(float xPrecent, float yPrecent, int id) {
     sendMessage(yPrecent,xPrecent);    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        close();
+
+    }
 }
