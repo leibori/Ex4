@@ -23,7 +23,7 @@ public class Joystick extends SurfaceView implements SurfaceHolder.Callback, Vie
         centerX = getWidth() / 2;
         centerY = getHeight() / 2;
         baseRadius = Math.min(getWidth(), getHeight()) / 3;
-        topRadius = Math.min(getWidth(), getHeight()) / 5;
+        topRadius = Math.min(getWidth(), getHeight()) / 10;
     }
 
     public Joystick(Context context) {
