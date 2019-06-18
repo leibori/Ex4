@@ -76,7 +76,7 @@
                     android:digits="0123456789"
                     android:ems="10"
                     android:inputType="number|numberDecimal"
-                    android:text="5400"
+                    android:text="1234"
                     android:textSize="40sp" />
             </LinearLayout>
 

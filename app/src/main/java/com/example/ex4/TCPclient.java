@@ -37,24 +37,36 @@ public class TCPclient extends AppCompatActivity implements Joystick.JoystickLis
 
     //public TCPclient(){ }
     public void sendMessage(final double send_elevator, final double  send_aileron) {
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                String elavatorPath = "set controls/flight/elevator ";
-                String aileronPath = "set controls/flight/aileron ";
-                try {
-                    if (socket!=null) {
+//        Runnable runnable = new Runnable() {
+//            @Override
+//            public void run() {
+//                String elavatorPath = "set controls/flight/elevator ";
+//                String aileronPath = "set controls/flight/aileron ";
+//                try {
+//                    if (socket!=null) {
+//
+//                        writer.println(elavatorPath + send_elevator + "\r\n");
+//                        writer.println(aileronPath + send_aileron + "\r\n");
+//                    }
+//                } catch (Exception e) {
+//                    Log.e("TCP", "S: Error", e);
+//                }
+//            }
+//        };
+//        Thread thread = new Thread(runnable);
+//        thread.start();
 
-                        writer.println(elavatorPath + send_elevator + "\r\n");
-                        writer.println(aileronPath + send_aileron + "\r\n");
-                    }
-                } catch (Exception e) {
-                    Log.e("TCP", "S: Error", e);
-                }
+        String elavatorPath = "set controls/flight/elevator ";
+        String aileronPath = "set controls/flight/aileron ";
+        try {
+            if (socket!=null) {
+
+                writer.println(elavatorPath + send_elevator + "\r\n");
+                writer.println(aileronPath + send_aileron + "\r\n");
             }
-        };
-        Thread thread = new Thread(runnable);
-        thread.start();
+        } catch (Exception e) {
+            Log.e("TCP", "S: Error", e);
+        }
     }
     public void connect(final String ip, final String port){
         Runnable runnable = new Runnable() {
@@ -100,8 +112,7 @@ public class TCPclient extends AppCompatActivity implements Joystick.JoystickLis
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         close();
-
+        super.onDestroy();
     }
 }
